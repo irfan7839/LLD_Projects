@@ -1,5 +1,7 @@
-from interfaces.toss import Toss
+
 import random
+
+from LLD_Projects.cricket_match_dashboard.interfaces.toss import Toss
 
 
 class TossImp(Toss):

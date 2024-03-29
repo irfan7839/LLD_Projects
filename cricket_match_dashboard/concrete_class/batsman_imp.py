@@ -1,4 +1,4 @@
-from interfaces.batsman import Batsman
+from LLD_Projects.cricket_match_dashboard.interfaces.batsman import Batsman
 
 
 class BatsmanImp(Batsman):

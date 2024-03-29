@@ -1,6 +1,6 @@
 from abc import abstractmethod
 
-from interfaces.bowler import Bowler
+from LLD_Projects.cricket_match_dashboard.interfaces.bowler import Bowler
 
 
 class BowlerImp(Bowler):

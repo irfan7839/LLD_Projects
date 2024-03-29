@@ -1,4 +1,4 @@
-from interfaces.players import Player
+from LLD_Projects.cricket_match_dashboard.interfaces.players import Player
 
 
 class PlayerImp(Player):

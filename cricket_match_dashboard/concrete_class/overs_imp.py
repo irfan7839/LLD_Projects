@@ -1,4 +1,4 @@
-from interfaces.overs import Overs
+from LLD_Projects.cricket_match_dashboard.interfaces.overs import Overs
 
 
 class OversImp(Overs):

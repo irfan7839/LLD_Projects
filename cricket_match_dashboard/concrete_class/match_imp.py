@@ -1,10 +1,10 @@
-from concrete_class.batsman_imp import BatsmanImp
-from concrete_class.bowler_imp import BowlerImp
-from concrete_class.player_imp import PlayerImp
-from concrete_class.team_imp import TeamImp
-from concrete_class.overs_imp import OversImp
-from concrete_class.toss_imp import TossImp
-from interfaces.match import Matches
+from LLD_Projects.cricket_match_dashboard.concrete_class.batsman_imp import BatsmanImp
+from LLD_Projects.cricket_match_dashboard.concrete_class.bowler_imp import BowlerImp
+from LLD_Projects.cricket_match_dashboard.concrete_class.player_imp import PlayerImp
+from LLD_Projects.cricket_match_dashboard.concrete_class.team_imp import TeamImp
+from LLD_Projects.cricket_match_dashboard.concrete_class.overs_imp import OversImp
+from LLD_Projects.cricket_match_dashboard.concrete_class.toss_imp import TossImp
+from LLD_Projects.cricket_match_dashboard.interfaces.match import Matches
 
 
 class MatchImp(Matches):
@@ -46,45 +46,54 @@ class MatchImp(Matches):
         t1.create_team()
         for i in range(int(total_players)):
             p = PlayerImp()
-            p.create_player(f'{t1.team_name}_0{i+1}')
+            p.create_player(f'{t1.team_name}_0{i + 1}')
             t1.add_player(p)
         self.team1 = t1
         t2 = TeamImp()
         t2.create_team()
         for i in range(int(total_players)):
             q = PlayerImp()
-            q.create_player(f'{t2.team_name}_0{i+1}')
+            q.create_player(f'{t2.team_name}_0{i + 1}')
             t2.add_player(q)
         self.team2 = t2
-        which_team_call = input(f"choose which team will call {t1.team_name} or {t2.team_name}")
-        toss = TossImp()
-        if which_team_call == t1.team_name:
-            team_a = t1
-            team_b = t2
-        elif which_team_call == t2.team_name:
-            team_a = t2
-            team_b = t1
-        toss.toss_time(which_team_call)
+        while True:
+            which_team_call = input(f"choose which team will call {t1.team_name} or {t2.team_name}")
+            toss = TossImp()
+            team_a = None
+            team_b = None
+            if which_team_call not in [t1.team_name, t2.team_name]:
+                continue
+            else:
+                if which_team_call == t1.team_name:
+                    team_a = t1
+                    team_b = t2
 
-        self.toss_result = toss.toss_result()
-        if self.toss_result == 'win':
-            decision = input(f'{team_a.team_name} won the toss please choose bat or bowl first')
-            if decision == 'bat':
-                self.team1 = team_a
-                self.team2 = team_b
+                elif which_team_call == t2.team_name:
+                    team_a = t2
+                    team_b = t1
+
+                toss.toss_time(which_team_call)
+                self.toss_result = toss.toss_result()
+
+            if self.toss_result == 'win':
+                decision = input(f'{team_a.team_name} won the toss please choose bat or bowl first')
+                if decision == 'bat':
+                    self.team1 = team_a
+                    self.team2 = team_b
+                else:
+                    self.team1 = team_b
+                    self.team2 = team_a
             else:
-                self.team1 = team_b
-                self.team2 = team_a
-        else:
-            decision = input(f'{team_b.team_name} won the toss please choose bat or bowl first')
-            if decision == 'bat':
-                self.team1 = team_b
-                self.team2 = team_a
-            else:
-                self.team1 = team_a
-                self.team2 = team_b
-        self.current_batting_team = self.team1
-        self.current_bowling_team = self.team2
+                decision = input(f'{team_b.team_name} won the toss please choose bat or bowl first')
+                if decision == 'bat':
+                    self.team1 = team_b
+                    self.team2 = team_a
+                else:
+                    self.team1 = team_a
+                    self.team2 = team_b
+            self.current_batting_team = self.team1
+            self.current_bowling_team = self.team2
+            break
 
         for player in self.team1.players_list:
             batsman = BatsmanImp()
@@ -114,11 +123,14 @@ class MatchImp(Matches):
     def show_current_batting_team_stats(self):
         print("ID\t Name\t Runs\t Balls\t Fours\t Sixes\t SR")
         for batsman in self.current_batting_team:
-            print(f'{batsman.player.id}\t {batsman.player.name}\t {batsman.runs}\t {batsman.balls}\t {batsman.fours}\t {batsman.sixes}\t {batsman.strike_rate}')
+            print(
+                f'{batsman.player.id}\t {batsman.player.name}\t {batsman.runs}\t {batsman.balls}\t {batsman.fours}\t {batsman.sixes}\t {batsman.strike_rate}')
             print('-------------------------------------------------')
 
     def show_current_bowling_team_stats(self):
         print("ID\t Name\t Runs\t Balls\t Fours\t Sixes\t SR")
         for batsman in self.current_bowling_team:
-            print(f'{batsman.player.id}\t {batsman.player.name}\t {batsman.runs}\t {batsman.balls}\t {batsman.fours}\t {batsman.sixes}\t {batsman.strike_rate}')
+            print(
+                f'{batsman.player.id}\t {batsman.player.name}\t {batsman.runs}\t {batsman.balls}\t {batsman.fours}\t {batsman.sixes}\t {batsman.strike_rate}')
             print('-------------------------------------------------')
+
