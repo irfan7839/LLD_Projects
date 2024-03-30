@@ -1,6 +1,6 @@
 from abc import abstractmethod
 
-from LLD_Projects.cricket_match_dashboard.interfaces.bowler import Bowler
+from interfaces.bowler import Bowler
 
 
 class BowlerImp(Bowler):
@@ -28,11 +28,11 @@ class BowlerImp(Bowler):
         if score == '0':
             self.dot_balls += 1
             self.total_balls += 1
-            self.economy = self.runs / self.total_balls
+
         elif score == 'out':
             self.wicket += 1
             self.total_balls += 1
-            self.economy = self.runs / self.total_balls
+
         elif score == '4':
             self.runs += int(score)
             self.four_conceded += 1
@@ -42,14 +42,14 @@ class BowlerImp(Bowler):
             self.runs += int(score)
             self.six_conceded += 1
             self.total_balls += 1
-            self.economy = self.runs / self.total_balls
+
         elif score == 'wd' or score == 'nb':
             self.runs += 1
-            self.economy = self.runs / self.total_balls
+
         elif score == '1' or score == '2' or score == '3':
             self.runs += int(score)
             self.total_balls += 1
-            self.economy = self.runs / self.total_balls
+        self.economy = round((self.runs / self.total_balls)*6, 2)
         if self.total_balls != 0 and self.total_balls % 6 == 0:
             self.over += 1
             self.is_over_finished = True

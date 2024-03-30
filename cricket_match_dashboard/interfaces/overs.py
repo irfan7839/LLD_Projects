@@ -11,9 +11,5 @@ class Overs(ABC):
         pass
 
     @abstractmethod
-    def clear_over(self):
-        pass
-
-    @abstractmethod
     def show_no_of_balls(self):
         pass

@@ -1,4 +1,4 @@
-from LLD_Projects.cricket_match_dashboard.interfaces.batsman import Batsman
+from interfaces.batsman import Batsman
 
 
 class BatsmanImp(Batsman):
@@ -28,6 +28,6 @@ class BatsmanImp(Batsman):
         elif score in ['0', '1', '2', '3']:
             self.runs += int(score)
             self.balls += 1
-            self.strike_rate = self.runs / self.balls
+            self.strike_rate = round((self.runs / self.balls)*100, 2)
         elif score == 'out':
             self.is_out = True

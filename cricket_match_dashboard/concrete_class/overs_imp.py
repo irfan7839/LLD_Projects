@@ -1,4 +1,4 @@
-from LLD_Projects.cricket_match_dashboard.interfaces.overs import Overs
+from interfaces.overs import Overs
 
 
 class OversImp(Overs):
@@ -8,20 +8,21 @@ class OversImp(Overs):
         self.total_runs = 0
         self.total_wicket = 0
         self.total_extras = 0
-        self.extras = ['wd', 'nb']
-        self.out = ['bowled', 'caught', 'lbw']
+        self.score_list = ['0', '1', '2', '3', '4', '6']
+        self.extra = ['wd', 'nb']
         self.ball_count = 0
         self.score = 0
 
     def add_ball_update(self, score):
+
         self.over.append(score)
         self.score = score
-        if score in self.extras:
+        if score in self.extra:
             self.total_extras += 1
-        elif score not in self.out:
+        elif score != 'out':
             self.total_runs += int(score)
             self.ball_count += 1
-        elif score in self.out:
+        elif score == 'out':
             self.total_wicket += 1
             self.ball_count += 1
 

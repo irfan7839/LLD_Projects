@@ -1,4 +1,4 @@
-from LLD_Projects.cricket_match_dashboard.interfaces.team import TeamStrategy
+from interfaces.team import TeamStrategy
 
 
 class TeamImp(TeamStrategy):
