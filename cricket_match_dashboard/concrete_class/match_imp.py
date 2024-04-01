@@ -5,6 +5,10 @@ from concrete_class.team_imp import TeamImp
 from concrete_class.overs_imp import OversImp
 from concrete_class.toss_imp import TossImp
 from interfaces.match import Matches
+from LLD_Projects.cricket_match_dashboard.concrete_class.batting_team import BattingTeamImp
+from LLD_Projects.cricket_match_dashboard.concrete_class.bowling_team_imp import BowlingTeamImp
+
+
 
 
 class MatchImp(Matches):
@@ -160,7 +164,7 @@ class MatchImp(Matches):
                 break
         return
 
-    def start_over(self):
+    def start_over(self, batting_team, bowling_team):
         over = OversImp()
         score_list = ['1', '2', '3', '4', '6', 'wd', 'nb', 'out', '0']
         print('score can be selected')
@@ -172,19 +176,19 @@ class MatchImp(Matches):
             else:
 
                 over.add_ball_update(score)
-                self.update_team_scores(score)
-                self.update_current_batsman_stat(score)
-                self.update_current_bowlers_state(score)
-                inning_over = self.get_new_batsman(score)
+                batting_team.update_team_scores(score)
+                batting_team.update_current_batsman_stat(score)
+                bowling_team.update_current_bowlers_state(score)
+                inning_over = batting_team.get_new_batsman(score)
                 if inning_over:
                     return True
-                self.change_batsman(score)
-                self.show_current_batting_team_stats()
-                self.show_current_bowling_team_stats()
+                batting_team.change_batsman(score)
+                batting_team.show_current_batting_team_stats()
+                bowling_team.show_current_bowling_team_stats()
             if self.inning == 2:
-                if self.total_run_2 > self.total_run_1:
+                if bt2.show_total_runs() > bt1.show_total_runs():
                     return True
-                self.show_runs_required_to_win()
+                bt2.show_runs_required_to_win()
         if over.ball_count == 6:
             print('Over finished please change the bowler')
             self.previous_bowler = self.current_bowler
@@ -396,7 +400,7 @@ class MatchImp(Matches):
     def match_result(self):
         if (
                 self.total_overs_2 == self.total_overs or self.total_wicket_2 == self.total_players - 1) and self.total_run_2 < self.total_run_1:
-            win_run = self.total_run_2 - self.total_run_1
+            win_run = self.total_run_1 - self.total_run_2
             self.match_winner = self.team1
             print(f'{self.team1.team_name} won by {win_run} runs.')
             return
