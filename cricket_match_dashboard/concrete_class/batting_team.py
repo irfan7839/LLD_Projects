@@ -1,3 +1,4 @@
+from LLD_Projects.cricket_match_dashboard.concrete_class.batsman_imp import BatsmanImp
 from LLD_Projects.cricket_match_dashboard.interfaces.batting_team import BattingTeam
 
 
@@ -15,10 +16,13 @@ class BattingTeamImp(BattingTeam):
         self.striker = None
         self.non_striker = None
 
-    def create_batting_team(self, team, batsman_list, total_players):
+    def create_batting_team(self, team):
         self.team = team
-        self.total_players = total_players
-        self.batsman = batsman_list
+        self.total_players = len(team.players_list)
+        for player in self.team.players_list:
+            batsman = BatsmanImp()
+            batsman.create_batsman(player)
+            self.batsman.append(batsman)
 
     def update_team_scores(self, score):
 
@@ -35,13 +39,14 @@ class BattingTeamImp(BattingTeam):
             self.total_balls += 1
         if self.total_balls != 0:
             self.total_run_rate = (self.total_run * 6) / self.total_balls
-        self.total_overs = self.total_balls / 6
+        if self.total_balls % 6 == 0:
+            self.total_overs += 1
 
     def get_new_batsman(self, score):
         if score == 'out':
             if self.total_wicket == self.total_players - 1:
                 return True
-            self.striker = self.batsman[self.total_wicket]
+            self.striker = self.batsman[self.total_wicket + 1]
         return False
 
     def change_batsman(self, score):
@@ -58,16 +63,16 @@ class BattingTeamImp(BattingTeam):
             self.striker.fours += 1
             self.striker.balls += 1
             self.striker.runs += 4
-            self.striker.strike_rate = self.striker.runs / self.striker.balls
+            self.striker.strike_rate = round((self.striker.runs / self.striker.balls)*100, 2)
         elif score == '6':
             self.striker.sixes += 1
             self.striker.balls += 1
             self.striker.runs += 6
-            self.striker.strike_rate = self.striker.runs / self.striker.balls
+            self.striker.strike_rate = round((self.striker.runs / self.striker.balls)*100, 2)
         elif score in ['0', '1', '2', '3']:
             self.striker.runs += int(score)
             self.striker.balls += 1
-            self.striker.strike_rate = self.striker.runs / self.striker.balls
+            self.striker.strike_rate = round((self.striker.runs / self.striker.balls)*100, 2)
         elif score == 'out':
             self.striker.balls += 1
             self.striker.is_out = True
@@ -76,9 +81,9 @@ class BattingTeamImp(BattingTeam):
         print("ID\t\t Name\t Runs\t Balls\t Fours\t Sixes\t SR")
         for batsman in self.batsman:
             print(
-                f'{batsman.player.id}\t {batsman.player.name}\t {batsman.runs}\t\t {batsman.balls}\t\t {batsman.fours}\t\t {batsman.sixes}\t\t {batsman.strike_rate}')
+                f'{batsman.player.id}\t {batsman.player.name}\t {batsman.runs}\t\t {batsman.balls}\t\t {batsman.fours}\t\t {batsman.sixes}\t\t {batsman.strike_rate}\t\t {"OUT" if batsman.is_out else ""}')
             print('-------------------------------------------------')
-        print(f"{self.total_run} - {self.total_wicket} ({self.total_overs})")
+        print(f"{self.total_run} - {self.total_wicket} ({self.total_overs}.{self.total_balls%6})\t\t RunRate:{self.total_run_rate}\t\t Extras:{self.total_extras}")
 
     def show_total_runs(self):
         return self.total_run
@@ -95,3 +100,4 @@ class BattingTeamImp(BattingTeam):
             balls_left = (self.total_overs * 6) - self.total_balls
             wickets_left = self.total_players - self.total_wicket - 1
             print(f"{required_run} runs required in {balls_left} balls with {wickets_left} wickets remaining")
+

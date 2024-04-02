@@ -12,50 +12,15 @@ class Matches(ABC):
         pass
 
     @abstractmethod
-    def create_batting_order(self):
+    def show_runs_required_to_win(self):
         pass
 
     @abstractmethod
-    def select_bowler(self, current_bowling_team):
+    def start_match(self):
         pass
 
     @abstractmethod
     def start_over(self):
-        pass
-
-    @abstractmethod
-    def start(self):
-        pass
-
-    @abstractmethod
-    def show_current_batting_team_stats(self):
-        pass
-
-    @abstractmethod
-    def show_current_bowling_team_stats(self):
-        pass
-
-    @abstractmethod
-    def update_team_scores(self, score):
-        pass
-
-    @abstractmethod
-    def update_current_batsman_stat(self, score):
-        pass
-
-    @abstractmethod
-    def start_inning_select_batsman(self):
-        pass
-
-    @abstractmethod
-    def change_batsman(self, score):
-        pass
-
-    def get_new_batsman(self, score):
-        pass
-
-    @abstractmethod
-    def update_current_bowlers_state(self, score):
         pass
 
     @abstractmethod

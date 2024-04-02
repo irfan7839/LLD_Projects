@@ -4,7 +4,7 @@ from abc import ABC, abstractmethod
 class BattingTeam(ABC):
 
     @abstractmethod
-    def create_batting_team(self, team, batsman_list, total_players):
+    def create_batting_team(self, team):
         pass
 
     @abstractmethod

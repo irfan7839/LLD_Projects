@@ -20,5 +20,9 @@ class BowlingTeam(ABC):
         pass
 
     @abstractmethod
-    def select_bowler(self, player_id):
+    def select_bowler(self):
+        pass
+
+    @abstractmethod
+    def start_over(self, batting_team, bowling_team, inning):
         pass
