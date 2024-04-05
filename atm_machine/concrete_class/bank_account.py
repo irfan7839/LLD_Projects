@@ -7,6 +7,7 @@ class BankAccountImp(BankAccountInterface):
         self.user = None
         self.balance = 0
         self.account_type = None
+        self.account_number = None
         # self.branch = None
         # self.IFSC = None
         self.cards = []
@@ -29,6 +30,7 @@ class BankAccountImp(BankAccountInterface):
         return self.balance
 
     def add_card(self, card):
+        card.add_account_number(self.account_number)
         self.cards.append(card)
 
     def remove_card(self, card):

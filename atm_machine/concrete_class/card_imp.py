@@ -11,9 +11,12 @@ class CardImp(CardInterface):
         self.card_type = None
         self.card_number = None
         self.expiry = None
+        self.expiry_year = None
+        self.expiry_month = None
         self.cvv = None
         self.name_on_card = None
         self.pin_code = None
+        self.account = None
 
     def create_card(self, card_type, name):
         self.card_type = card_type
@@ -51,3 +54,15 @@ class CardImp(CardInterface):
 
     def create_pin(self, pin):
         self.pin_code = pin
+
+    def add_account_number(self, account_number):
+        self.account = account_number
+
+    def verify_expiry(self):
+        current_year = datetime.date.year
+        current_month = datetime.date.month
+        if self.expiry_year > current_year:
+            return False
+        elif self.expiry_year == current_year and self.expiry_month <= current_month:
+            return False
+        return True

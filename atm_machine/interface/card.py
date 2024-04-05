@@ -19,3 +19,7 @@ class CardInterface(ABC):
     def get_cvv(self):
         pass
 
+    @abstractmethod
+    def add_account_number(self, account_number):
+        pass
+
