@@ -4,7 +4,7 @@ from abc import ABC, abstractmethod
 class CardInterface(ABC):
 
     @abstractmethod
-    def create_card(self):
+    def create_card(self, card_type, name):
         pass
 
     @abstractmethod

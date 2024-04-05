@@ -1,5 +1,5 @@
-from  interface.user import UserInterFace
-
+from interface.user import UserInterFace
+from concrete_class.bank_account import BankAccountImp
 class UserImp(UserInterFace):
     def __init__(self):
         self.username = None
@@ -23,7 +23,23 @@ class UserImp(UserInterFace):
 
     def get_user_details(self):
         return self
-    #
-    # def generate_user_id(self):
-    #     self.user_id = str(self.username[0:2] + '_' + self.phone[:4])
-    #
+
+    def apply_for_bank_account(self):
+        bank_account = BankAccountImp()
+        bank_account.create_bank_account(self.username, self.password, self.identity, self.dob, self.gender)
+
+
+    def apply_for_debit_card(self):
+        pass
+
+    def show_bank_balance(self):
+        pass
+
+    def deposit_money(self):
+        pass
+
+    def withdraw_money(self):
+        pass
+
+    def transfer_money(self):
+        pass
