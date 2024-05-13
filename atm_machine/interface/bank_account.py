@@ -11,14 +11,14 @@ class BankAccountInterface(ABC):
     def get_account_details(self, user):
         pass
     @abstractmethod
-    def get_account_balance(self, card):
+    def get_account_balance(self):
         pass
     @abstractmethod
-    def deposit_money(self, amount):
+    def deposit_money(self):
         pass
 
     @abstractmethod
-    def withdrawal_money(self, amount):
+    def withdrawal_money(self):
         pass
 
     @abstractmethod
@@ -26,5 +26,5 @@ class BankAccountInterface(ABC):
         pass
 
     @abstractmethod
-    def get_card_details(self, card_type):
+    def get_card_details(self):
         pass

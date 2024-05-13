@@ -16,21 +16,22 @@ class BankAccountImp(BankAccountInterface):
         self.user = user
         self.account_type = account_type
 
-    def deposit_money(self, amount):
+    def deposit_money(self):
+        amount = int(input('please enter the amount you want to withdraw'))
         self.balance += amount
         return self.balance
 
-    def withdrawal_money(self, amount):
+    def withdrawal_money(self):
+        amount = int(input('please enter the amount you want to withdraw'))
         if amount <= self.balance:
             self.balance -= amount
         else:
             print('Insufficient Fund')
 
-    def get_account_balance(self, card):
+    def get_account_balance(self):
         return self.balance
 
     def add_card(self, card):
-        card.add_account_number(self.account_number)
         self.cards.append(card)
 
     def remove_card(self, card):
@@ -43,10 +44,14 @@ class BankAccountImp(BankAccountInterface):
                 return True
         return False
 
-    def get_card_details(self, card_type):
-        for card in self.cards:
-            if card.card_type == card_type:
-                return card
-        print('None Card Found')
-        return False
+    # def get_card_details(self, card_type):
+    #     for card in self.cards:
+    #         if card.card_type == card_type:
+    #             return card
+    #     print('None Card Found')
+    #     return False
+    #
+    # def get_account_details(self):
+    #     return self
+
 

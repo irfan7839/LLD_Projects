@@ -8,13 +8,13 @@ class BankCustomersInterface(ABC):
         pass
 
     @abstractmethod
-    def get_bank_customer(self, account_number):
+    def get_bank_customer(self, user):
         pass
 
-    @abstractmethod
-    def activate_bank_customer(self, account_number):
-        pass
-
-    @abstractmethod
-    def deactivate_bank_customer(self, account_number):
-        pass
+    # @abstractmethod
+    # def activate_bank_customer(self, account_number):
+    #     pass
+    #
+    # @abstractmethod
+    # def deactivate_bank_customer(self, account_number):
+    #     pass

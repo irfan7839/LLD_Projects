@@ -1,5 +1,6 @@
 # This is a sample Python script.
-from parking_lot.parking_area.two_wheelers_area import TwoWheelerArea
+from builderDesign.parking_lot.parking_area.parking_factory import Parkingfactory
+from builderDesign.parking_lot.parking_area.vehicle_factory import VehicleFactory
 
 
 # Press Shift+F10 to execute it or replace it with your code.
@@ -13,17 +14,20 @@ def print_hi(name):
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    parking_area = TwoWheelerArea()
-    parking_area.is_slot()
+    vehicle_type = input('select your vehicle')
+    vehicle = VehicleFactory.get_vehicle(vehicle_type)
     name = input('please enter Your name')
     milage = int(input("please enter Your vehicle's milage"))
     capacity = int(input("please enter Your vehicle's capacity"))
-    width = int(input("please enter Your vehicle's width"))
-    depth = int(input("please enter Your vehicle's depth"))
     number = input('please enter Your vehicle number')
     manufacturer = input('please enter Your vehicle manufacturer')
-    parking_area.add_vehicle(milage, name, capacity, width, depth, number, manufacturer)
-    parking_area.get_vehicle('two_w_000')
+
+    vehicle.create_vehicle_details(milage, name, capacity, number, manufacturer)
+    parking_area = Parkingfactory.get_parking_area(vehicle_type)
+    parking_area.is_slot()
+
+    parking_area.add_vehicle(vehicle, name)
+    parking_area.get_vehicle('two_w_001')
     parking_area.take_vehicle_out('two_w_000')
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/

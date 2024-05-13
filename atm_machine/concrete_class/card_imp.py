@@ -16,14 +16,15 @@ class CardImp(CardInterface):
         self.cvv = None
         self.name_on_card = None
         self.pin_code = None
-        self.account = None
 
-    def create_card(self, card_type, name):
+    def create_card(self, card_type, name, user):
         self.card_type = card_type
         self.name_on_card = name
         self.generate_card_number()
         self.generate_cvv()
-        self.generate_expiry()
+        self.expiry = self.generate_expiry()
+
+
 
     def generate_card_number(self):
         timestamp = int(time.time() * 1000)
@@ -41,12 +42,9 @@ class CardImp(CardInterface):
     def generate_expiry(self):
         current_date = datetime.datetime.now()
         expiry_year = current_date.year + 5
-        expiry_month = current_date.month
-        if expiry_year > current_date.year:
-            expiry_month = random.randint(1, 12)
-        else:
-            expiry_month = random.randint(current_date.month, 12)
-
+        expiry_month = random.randint(1, 12)
+        self.expiry_year = expiry_year
+        self.expiry_month = expiry_month
         return '{:02d}/{:02d}'.format(expiry_month, expiry_year % 100)
 
     def get_card_details(self):
@@ -54,9 +52,6 @@ class CardImp(CardInterface):
 
     def create_pin(self, pin):
         self.pin_code = pin
-
-    def add_account_number(self, account_number):
-        self.account = account_number
 
     def verify_expiry(self):
         current_year = datetime.date.year
@@ -66,3 +61,9 @@ class CardImp(CardInterface):
         elif self.expiry_year == current_year and self.expiry_month <= current_month:
             return False
         return True
+
+    def get_account_details(self, user, bank_customer):
+        account = bank_customer.get_bank_customer(user)
+        return account
+
+

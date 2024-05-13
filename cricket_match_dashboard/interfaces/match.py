@@ -20,7 +20,7 @@ class Matches(ABC):
         pass
 
     @abstractmethod
-    def start_over(self):
+    def start_over(self, batsman, bowler):
         pass
 
     @abstractmethod
