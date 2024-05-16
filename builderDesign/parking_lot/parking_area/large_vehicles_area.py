@@ -1,5 +1,5 @@
-from builderDesign.parking_lot.parking_area.bus import Bus
-from builderDesign.parking_lot.parking_area.car_slot import CarSlot
+from parking_lot.parking_area.bus import Bus
+from parking_lot.parking_area.car_slot import CarSlot
 
 
 class LargeVehicleArea:

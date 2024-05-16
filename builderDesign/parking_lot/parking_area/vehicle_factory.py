@@ -1,7 +1,7 @@
-from builderDesign.parking_lot.parking_area.bike import Bike
-from builderDesign.parking_lot.parking_area.bus import Bus
-from builderDesign.parking_lot.parking_area.car import Car
-from builderDesign.parking_lot.parking_area.vehicle import Vehicle
+from parking_lot.parking_area.bike import Bike
+from parking_lot.parking_area.bus import Bus
+from parking_lot.parking_area.car import Car
+from parking_lot.parking_area.vehicle import Vehicle
 
 
 class VehicleFactory:
