@@ -4,8 +4,8 @@ from parking_system.vehicle.vehicle import VehicleType
 
 
 class FourWheelerPsManager(PsManager):
-    def total_parking_slot(self):
-        self.total_slot = 40
+    def total_parking_slot(self, slot):
+        self.total_slot = slot
         self.slots = [None] * self.total_slot
         for i in range(self.total_slot):
             self.slots.append(TwoWheelerSpot.assign_spot_id(i + 1, VehicleType.TWO_WHEELER))

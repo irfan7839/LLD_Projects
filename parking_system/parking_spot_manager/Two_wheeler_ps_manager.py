@@ -4,17 +4,23 @@ from parking_system.vehicle.vehicle import VehicleType
 
 
 class TwoWheelerPsManager(PsManager):
-    def total_parking_slot(self):
-        self.total_slot = 60
+    def total_parking_slot(self, slot):
+        self.total_slot = slot
         self.slots = [None] * self.total_slot
+        self.spot = TwoWheelerSpot()
         for i in range(self.total_slot):
-            self.slots.append(TwoWheelerSpot.assign_spot_id(i + 1, VehicleType.TWO_WHEELER))
+            self.slots[i] = self.spot.assign_spot_id(i + 1, VehicleType.TWO_WHEELER)
 
     def add_parking_space(self, size):
         for i in range(size):
-            self.slots.append(TwoWheelerSpot.assign_spot_id(self.total_slot + i + 1, VehicleType.TWO_WHEELER))
+            self.slots[self.total_slot + i] = self.spot.assign_spot_id(self.total_slot + i + 1, VehicleType.TWO_WHEELER)
 
         self.total_slot += size
 
-    def park_vehicle(self):
-        pass
+    def is_space_available(self):
+        for slot in self.slots:
+            if slot.isEmpty:
+                return True
+        return False
+
+

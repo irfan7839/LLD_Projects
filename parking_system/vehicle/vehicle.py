@@ -8,9 +8,7 @@ class VehicleType(Enum):
 
 
 class Vehicle:
-    def __init__(self, v_no, v_type):
-        self.vehicle_number = v_no
-        if isinstance(v_type, VehicleType):
-            self.v_type = v_type
-        else:
-            raise ValueError("Invalid vehicle type")
+    def __init__(self, v_type, v_no):
+        self.vehicle_number = v_type
+        self.v_type = v_no
+
