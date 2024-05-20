@@ -1,8 +1,8 @@
 import datetime
 from datetime import timedelta
 
-from builderDesign.parking_lot.parking_area.bike import Bike
-from builderDesign.parking_lot.parking_area.bike_slot import BikeSlot
+from parking_lot.parking_area.bike import Bike
+from parking_lot.parking_area.bike_slot import BikeSlot
 
 
 class TwoWheelerArea:
@@ -42,7 +42,7 @@ class TwoWheelerArea:
 
     def take_vehicle_out(self, slot_number):
         val = self.slots[slot_number]
-        total_amount, total_hour = val.total_cost()
+        total_hour, total_amount, = val.total_cost()
         self.total_vehicles -= 1
         print(f'Vehicle number {val.bike.number} was parked for {total_hour} hours please pay {total_amount}')
         self.slots[slot_number] = None

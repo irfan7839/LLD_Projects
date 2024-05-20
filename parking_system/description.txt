@@ -1,0 +1,18 @@
+requiremnts :
+1 entrance (can be multiple)
+2. different types of spot:
+        -- Two Wheelers
+        -- Four Wheelers
+        -- Large Vehicles
+3. Price:
+    -- Hourly
+    -- Minute
+4. Nearest Parking space from entrance
+5. Floors
+
+Objects:
+1. Vehicle (v_no, v_type)
+2. Parking Spot (id,vehicle, price, type )
+3. Ticket ( parking slot, vehicle, charges,entry time)
+4. Entry Gate ( Find Spot, Assign Spot, Generate Ticket )
+5. Exit Gate  ( Unpark vehicle, free parking Spot, calculate Price)

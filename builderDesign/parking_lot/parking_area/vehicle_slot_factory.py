@@ -1,6 +1,6 @@
-from builderDesign.parking_lot.parking_area.bike_slot import BikeSlot
-from builderDesign.parking_lot.parking_area.bus_slot import BusSlot
-from builderDesign.parking_lot.parking_area.car_slot import CarSlot
+from parking_lot.parking_area.bike_slot import BikeSlot
+from parking_lot.parking_area.bus_slot import BusSlot
+from parking_lot.parking_area.car_slot import CarSlot
 
 
 class VehicleSlotFactory:

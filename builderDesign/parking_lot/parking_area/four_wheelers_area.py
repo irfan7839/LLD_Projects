@@ -1,5 +1,5 @@
-from builderDesign.parking_lot.parking_area.car import Car
-from builderDesign.parking_lot.parking_area.car_slot import CarSlot
+from parking_lot.parking_area.car import Car
+from parking_lot.parking_area.car_slot import CarSlot
 
 
 class FourWheelerArea:

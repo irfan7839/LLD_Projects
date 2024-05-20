@@ -1,6 +1,6 @@
 # This is a sample Python script.
-from builderDesign.parking_lot.parking_area.parking_factory import Parkingfactory
-from builderDesign.parking_lot.parking_area.vehicle_factory import VehicleFactory
+from parking_lot.parking_area.parking_factory import Parkingfactory
+from parking_lot.parking_area.vehicle_factory import VehicleFactory
 
 
 # Press Shift+F10 to execute it or replace it with your code.
