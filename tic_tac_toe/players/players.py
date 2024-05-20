@@ -1,11 +1,9 @@
 class Players:
-    def __init__(self):
-        self.name = ''
-        self.user_id = ''
-        self.gender = ''
-
-    def create_player(self, name, user_id, gender):
+    def __init__(self, name, symbol):
         self.name = name
-        self.user_id = user_id
-        self.gender = gender
+        self.symbol = symbol
+
+    def create_player(self, name, symbol):
+        self.name = name
+        self.symbol = symbol
         print("User created successfully")
