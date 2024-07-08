@@ -1,0 +1,13 @@
+requirments:
+1. make it scalable for different vehicles.
+2. search vehicle option
+
+
+Objects:
+1. User
+2. Location
+3. Stores
+4. Vehicles
+5. Reservation
+6. Bill
+7. Payment
