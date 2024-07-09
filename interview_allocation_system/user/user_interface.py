@@ -1,28 +1,37 @@
 from abc import ABC, abstractmethod
 
+
 class User(ABC):
     def __init__(self):
         self.name = None
+        self.id = None
         self.age = None
-        self.gender = None
-        self.phone = None
-        self.is_login = False
+        self.email = None
+        self.schedule = None
+        self.finished_interview = None
 
     @abstractmethod
     def get_user_name(self):
         pass
 
     @abstractmethod
+    def get_user_email(self):
+        pass
+
+    @abstractmethod
+    def get_user_id(self):
+        pass
+
+    @abstractmethod
     def get_user_age(self):
         pass
+
     @abstractmethod
-    def get_user_phone(self):
+    def get_user_scheduled_interview(self):
         pass
+
     @abstractmethod
-    def get_user_gender(self):
-        pass
-    @abstractmethod
-    def get_user_login_status(self):
+    def get_user_interview_done(self):
         pass
 
     @abstractmethod
@@ -30,21 +39,21 @@ class User(ABC):
         pass
 
     @abstractmethod
+    def set_user_email(self, email):
+        pass
+
+    @abstractmethod
+    def set_user_id(self, user_id):
+        pass
+
+    @abstractmethod
     def set_user_age(self, age):
         pass
 
     @abstractmethod
-    def set_user_phone(self, phone, restaurant_owner_management):
+    def set_user_scheduled_interview(self, interview):
         pass
 
     @abstractmethod
-    def set_user_gender(self, gender):
-        pass
-
-    @abstractmethod
-    def set_user_login_status(self, login):
-        pass
-
-    @abstractmethod
-    def validate_phone(self, phone, restaurant_owner_management):
+    def set_user_interview_done(self, interview):
         pass

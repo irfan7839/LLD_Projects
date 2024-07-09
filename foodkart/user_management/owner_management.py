@@ -1,4 +1,4 @@
-from foodkart.user_management.user_management_interface import UserManagement
+from LLD_Projects.foodkart.user_management.user_management_interface import UserManagement
 
 
 class OwnerManagement(UserManagement):
@@ -17,10 +17,16 @@ class OwnerManagement(UserManagement):
         for user in self.user_list:
             if user.phone == phone:
                 return user
-        print("No user exist with this phone nummber! ")
+        print("No user exist with this phone number! ")
 
     def get_user_by_restaurant(self, restaurant_name):
         for user in self.user_list:
             if user.restaurant.name == restaurant_name:
                 return user
         print("No user exist for this restaurant! ")
+
+    def check_user_exist_by_phone(self, phone):
+        for user in self.user_list:
+            if user.phone == phone:
+                return True
+        return False

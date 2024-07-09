@@ -5,8 +5,9 @@ class RestaurantManagement:
     def get_restaurants_by_area(self, pincode):
         rest_list = []
         for rest in self.restaurant_list:
-            if rest.pincode == pincode:
-                rest_list.append(rest)
+            for pin in rest.pin_list:
+                if pin == pincode:
+                    rest_list.append(rest)
         if not rest_list:
             print('No restaurant available in this area ')
             return

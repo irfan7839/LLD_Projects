@@ -1,4 +1,4 @@
-from foodkart.user.user_interface import User
+from LLD_Projects.foodkart.user.user_interface import User
 
 
 class RestaurantOwner(User):
@@ -30,8 +30,12 @@ class RestaurantOwner(User):
     def set_user_age(self, age):
         self.age = age
 
-    def set_user_phone(self, phone):
-        self.phone = phone
+    def set_user_phone(self, phone, restaurant_owner_management):
+        if not self.validate_phone(phone, restaurant_owner_management):
+            self.phone = phone
+        else:
+            print('user already exist with this phone')
+            return
 
     def set_user_gender(self, gender):
         self.gender = gender
@@ -41,3 +45,7 @@ class RestaurantOwner(User):
 
     def set_restaurant(self, restaurant):
         self.restaurant = restaurant
+
+    def validate_phone(self, phone, restaurant_owner_management):
+        return restaurant_owner_management.check_user_exist_by_phone(phone)
+

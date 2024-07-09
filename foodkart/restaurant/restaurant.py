@@ -7,6 +7,7 @@ class Restaurant:
         self.price = None
         self.rating_list = []
         self.avg_rating = 0
+        self.pin_list = []
 
     def get_restaurant_name(self):
         return self.restaurant_name
@@ -19,6 +20,9 @@ class Restaurant:
 
     def get_food_price(self):
         return self.price
+
+    def get_pin_list(self):
+        return self.pin_list
 
     def get_initial_quantity(self):
         return self.initial_quantity
@@ -48,3 +52,10 @@ class Restaurant:
         l = len(self.rating_list)
         self.avg_rating = ((l * self.avg_rating) + rating.star) / (l + 1)
         self.rating_list.append(rating)
+
+    def add_pin_code_list(self, pincode):
+        for pin in self.pin_list:
+            if pin == pincode:
+                print(f'pincode {pincode} already exist!')
+                return
+        self.pin_list.append(pincode)

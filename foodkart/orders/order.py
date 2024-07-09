@@ -4,7 +4,7 @@ from random import random, randrange
 class Order:
     def __init__(self):
         self.restaurant = None
-        self.order_id = None
+        self.order_id = self.set_order_id()
         self.total_quantity = 0
         self.total_price = 0
         self.order_status = None
@@ -29,14 +29,26 @@ class Order:
 
     def set_order_id(self):
         order_no = randrange(0, 999)
-        self.order_id = order_no
+        return order_no
 
     def set_total_quantity(self, total_quantity):
-        self.total_quantity = total_quantity
+        if self.check_available_quantity(total_quantity):
+            self.total_quantity = total_quantity
+        else:
+            print('available quantity is less than total ordered quantity!')
+            return
 
     def set_total_price(self):
         self.total_price = self.restaurant.price * self.total_quantity
 
     def set_order_status(self, status):
         self.order_status = status
+
+    def check_available_quantity(self, quantity):
+        if self.restaurant.initial_quantity >= quantity:
+            return True
+        return False
+
+    def print_receipt(self):
+        print(f'order_id:{self.order_id}\t restaurant name:{self.restaurant.restaurant_name}\t\n food:{self.restaurant.specialized_food}\t quantity:{self.total_quantity}\t total price:{self.total_price}')
 
