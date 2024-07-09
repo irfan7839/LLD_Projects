@@ -44,8 +44,7 @@ class Restaurant:
     def set_initial_quantity(self, quantity):
         self.initial_quantity = quantity
 
-    def set_avg_rating(self):
-        self.avg_rating
-
-    def set_restaurant_ratings(self):
-        self.rating_list
+    def set_restaurant_ratings(self, rating):
+        l = len(self.rating_list)
+        self.avg_rating = ((l * self.avg_rating) + rating.star) / (l + 1)
+        self.rating_list.append(rating)
