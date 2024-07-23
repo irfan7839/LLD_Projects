@@ -1,3 +1,6 @@
+from LLD_Projects.book_my_show.seat.seat_enum import SeatStatus
+
+
 class Screen:
     def __init__(self):
         self.screen_id = None
@@ -36,4 +39,11 @@ class Screen:
             for seat_id in seat_ids:
                 if seat.seat_id == seat_id:
                     selected_seats.append(seat)
+        return selected_seats
+
+    def get_list_of_booked_seats(self):
+        selected_seats = []
+        for seat in self.seat_list:
+            if seat.status.value == SeatStatus.BOOKED:
+                selected_seats.append(seat)
         return selected_seats
